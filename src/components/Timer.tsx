@@ -9,20 +9,16 @@ export const Timer = () => {
     return String(time).length === 1 ? "0" + String(time) : time;
   };
 
-  let countdown: any;
-
   useEffect(() => {
-    countdown = setInterval(() => {
-      setTime(time - 1);
+    const countdown = setInterval(() => {
+      setTime((time) => time - 1);
     }, 1000);
-  }, [time]);
 
-  useEffect(() => {
     if (time === 0) {
       clearInterval(countdown);
       alert("카운트가 만료되었습니다.");
     }
-  }, [time]);
+  }, []);
 
   return (
     <Contaier>
