@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { Flex, Text } from "./Common";
 
 export const Timer = () => {
+  let startDate = new Date();
   const [time, setTime] = useState(1800);
 
   const changeTime = (time: number) => {
@@ -11,7 +12,10 @@ export const Timer = () => {
 
   useEffect(() => {
     const countdown = setInterval(() => {
-      setTime((time) => time - 1);
+      let newDate = new Date();
+      setTime(
+        1800 - Math.floor((newDate.getTime() - startDate.getTime()) / 1000)
+      );
     }, 1000);
 
     if (time === 0) {
